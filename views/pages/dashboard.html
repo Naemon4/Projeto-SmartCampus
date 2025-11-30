@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Chart.js para Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Estilo para usar a fonte Montserrat com Tailwind */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Efeito suave de transição para o slider */
+        .slider-track {
+            transition: transform 0.5s ease-in-out;
+        }
+        /* Estilos principais do logo */
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            /* Tamanho da fonte adaptado para o formulário */
+            font-size: clamp(2.2rem, 8vw, 3rem); 
+            font-weight: 700; /* Peso da fonte */
+            letter-spacing: -1.5px; /* Espaçamento entre as letras */
+            margin-bottom: 1rem; /* Espaço abaixo do logo */
+        }
+
+        /* Cores para cada parte do texto do logo */
+        .sala {
+            color: #3a5269; /* Azul escuro/acinzentado */
+        }
+        .fa {
+            color: #376fa3; /* Azul marinho */
+        }
+        .cil {
+            color: #4773c5; /* Azul cobalto */
+        }
+        
+        /* Estilo para usar a fonte Montserrat com Tailwind */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Footer */
+
+        footer{
+            background-color: #3a5269;
+            color: oldlace;
+            padding: 50px 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .footer-container{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-section{
+            flex-basis: 20%;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h4{
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #376fa3;
+        }
+
+        .footer-section p, .footer-section ul{
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .footer-section ul{
+            list-style-type: none;
+        }
+
+        .footer-section ul li{
+            margin-bottom: 10px;
+        }
+
+        .footer-section il li a{
+            color: aliceblue;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover{
+            color: #ff6347;
+        }
+
+        .social-links a{
+            display: inline-block;
+            margin-right: 10px;
+            color: aliceblue;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover{
+            color: green;
+        }
+
+        .footer-bottom{
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+            font-size: 14px;
+        }
+
+        .footer-bottom p{
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+           <!-- Estrutura do Logo -->
+                <div class="logo">
+                    <span class="sala">Sala</span><span class="fa">Fá</span><span class="cil">cil</span>
+                </div>
+
+
+
+
+            
+            <!-- Menu para Desktop -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Sobre</a>
+                <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition duration-300">Agendar</a>
+                <a href="#dashboard" class="text-gray-600 hover:text-blue-600 transition duration-300">Dashboard</a>
+                <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition duration-300">Cadastrar espaço</a>
+                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition duration-300">Cadastro</a>
+                <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Login</a>
+            </div>
+
+            <!-- Botão do Menu Mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
+            <a href="Agendar.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+            <a href="cadastro.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
+            <a href="login.html" class="block py-2 px-6 text-sm text-blue-600 hover:bg-gray-100">Login</a>
+        </div>
+    </header>
+
+    <main>
+        
+    </main>
+    
+</body>
+</html>

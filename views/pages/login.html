@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Smart Campus SENAI 2025</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat and Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilo para usar a fonte Montserrat no corpo */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilos principais do logo */
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            /* Tamanho da fonte adaptado para o formulário */
+            font-size: clamp(2.2rem, 8vw, 3rem); 
+            font-weight: 700; /* Peso da fonte */
+            letter-spacing: -1.5px; /* Espaçamento entre as letras */
+            margin-bottom: 1rem; /* Espaço abaixo do logo */
+        }
+
+        /* Cores para cada parte do texto do logo */
+         .smart {
+            color: #2c3e50; /* Azul escuro/acinzentado */
+        }
+        .ca {
+             color: #3a6192; /* Azul marinho */
+        }
+        .mp {
+            color: #376fa3; /* Azul marinho mais claro */
+        }
+        .us {
+             color: #4773c5; /*Azul cobalto  */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="container mx-auto px-6 py-12">
+        <div class="max-w-md mx-auto bg-white p-8 md:p-12 rounded-xl shadow-2xl">
+            <div class="text-center">
+                <!-- Estrutura do Logo -->
+                <div class="logo">
+                    <span class="smart">Smart</span><span class="ca">Ca</span><span class="mp">mp</span><span class="us">us</span>
+                </div>
+                <h3 class="text-3xl font-extrabold text-gray-900">
+                    Acesse sua Conta
+                </h3>
+                <p class="text-gray-500 mt-2 mb-8">Bem-vindo de volta ao Smart Campus.</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="mb-5">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">E-mail Institucional</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="seu.email@aluno.senai.br" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-semibold mb-2">Senha</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="********" required>
+                </div>
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">Lembrar-me</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="font-semibold text-blue-600 hover:text-blue-500">Esqueceu sua senha?</a>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-700 transition duration-300">Entrar</button>
+            </form>
+            
+            <p class="text-center text-gray-600 mt-8">
+                Não tem uma conta? <a href="/registro" class="text-blue-600 hover:underline font-semibold">Cadastre-se aqui</a>.
+            </p>
+        </div>
+    </div>
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js">
+</script>
+</body>
+<script src="../js/loginScript.js"></script>
+</html>

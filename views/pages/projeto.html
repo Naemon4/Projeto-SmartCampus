@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto: Monitoramento de Ocupação de Laboratórios - Smart Campus</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .slider-track {
+            transition: transform 0.5s ease-in-out;
+        }
+        /* Estilos para a Planta Baixa Detalhada */
+        .map-wrapper {
+            background-color: #e9e9e9;
+            border: 2px solid #999;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+        .map-room {
+            border: 1px solid #333;
+            background-color: #fff;
+            padding: 0.25rem;
+            text-align: center;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .map-room.occupied { background-color: #ffcccc; border-color: #ef4444; }
+        .map-room.free { background-color: #ccffcc; border-color: #22c55e; }
+        
+        .map-floor-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0.5rem;
+            background-color: #d1d5db;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Estilos para o sistema de abas/acordeão */
+        .tab-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s ease-in-out;
+        }
+        /* Estilos para o Roadmap */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .roadmap-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .roadmap-item {
+            background-color: #fff;
+            border: 2px solid;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .roadmap-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .roadmap-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .roadmap-item.blue { border-color: #3b82f6; color: #3b82f6; }
+        .roadmap-item.blue .roadmap-icon { background-color: #3b82f6; }
+
+        .roadmap-item.orange { border-color: #f97316; color: #f97316; }
+        .roadmap-item.orange .roadmap-icon { background-color: #f97316; }
+
+        .roadmap-item.green { border-color: #22c55e; color: #22c55e; }
+        .roadmap-item.green .roadmap-icon { background-color: #22c55e; }
+
+        .roadmap-item.purple { border-color: #8b5cf6; color: #8b5cf6; }
+        .roadmap-item.purple .roadmap-icon { background-color: #8b5cf6; }
+        
+        .roadmap-connector {
+            font-size: 2rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="" alt="Logo SENAI" class="h-12 mr-3">
+                <span class="text-xl font-bold text-gray-700">Smart Campus</span>
+            </div>
+            <a href="URL_DA_PAGINA_HOME.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i>
+                Voltar para Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Seção de Título do Projeto -->
+        <section class="text-center mb-16">
+            <i class="fas fa-users-viewfinder text-6xl text-orange-500 mb-4"></i>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">Monitoramento de Ocupação de Laboratórios</h1>
+            <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">Otimizando a gestão de espaços na Escola SENAI "Prof. Dr. Euryclides de Jesus Zerbini".</p>
+        </section>
+
+        <!-- Grid de Informações do Projeto -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Coluna de Descrição e Benefícios -->
+            <div class="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600">Descrição do Projeto</h2>
+                <p class="text-gray-700 mb-6">
+                    Este projeto implementa um sistema inteligente que utiliza a tecnologia NFC/RFID para monitorar a ocupação de laboratórios e salas de aula em tempo real. Ao entrar ou sair de um ambiente, o professor aproxima seu crachá de um leitor, e o sistema automaticamente atualiza o status da sala em um dashboard central. A plataforma exibe qual professor está utilizando o espaço, o horário de entrada e a previsão de saída, fornecendo à coordenação uma visão clara e instantânea da disponibilidade dos ambientes.
+                </p>
+                <h2 class="text-2xl font-bold mb-4 text-green-600">Benefício para o Campus</h2>
+                <p class="text-gray-700">
+                    O principal benefício é a otimização da distribuição e do uso dos espaços da escola. A coordenação pode gerenciar a alocação de salas de forma mais eficiente, evitar conflitos de horário e localizar professores rapidamente. Isso resulta em um melhor aproveitamento dos recursos do campus, agiliza a logística e melhora a comunicação interna.
+                </p>
+            </div>
+            <!-- Coluna de Componentes -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 text-yellow-500">Componentes Utilizados</h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center"><i class="fas fa-microchip text-xl text-gray-500 w-8"></i><span>Microcontrolador ESP8266</span></li>
+                    <li class="flex items-center"><i class="fas fa-id-card text-xl text-gray-500 w-8"></i><span>Módulo Leitor RFID/NFC</span></li>
+                    <li class="flex items-center"><i class="fas fa-tags text-xl text-gray-500 w-8"></i><span>Etiquetas TAG Adesivas RFID/NFC</span></li>
+                    <li class="flex items-center"><i class="fas fa-desktop text-xl text-gray-500 w-8"></i><span>Display OLED ou LCD</span></li>
+                </ul>
+            </div>
+        </div>
+  <section class="mb-16">
+          <!-- Botões de Links -->
+             <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">Acompanhe Nosso Progresso</h3>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <a href="https://trello.com/" target="_blank" class="flex items-center justify-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-transform transform hover:scale-105"><i class="fab fa-trello"></i><span>Quadro no Trello</span></a>
+                    <a href="https://docs.google.com/" target="_blank" class="flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-transform transform hover:scale-105"><i class="fas fa-file-alt"></i><span>Documentação</span></a>
+                    <a href="https://github.com/" target="_blank" class="flex items-center justify-center gap-2 bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-transform transform hover:scale-105"><i class="fab fa-github"></i><span>GitHub (Códigos)</span></a>
+                   
+                </div>
+            </div>
+            </section>
+
+        <!-- Seção Álbum de Fotos -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Álbum de Fotos do Desenvolvimento</h2>
+            <div id="slider" class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow-2xl" style="height: 450px;">
+                <div id="slider-track" class="slider-track flex h-full">
+                    <div class="w-full flex-shrink-0 h-full"><img src="https://placehold.co/1000x500/4285F4/FFFFFF?text=Montagem+do+Protótipo" alt="Montagem do Protótipo" class="w-full h-full object-cover"></div>
+                    <div class="w-full flex-shrink-0 h-full"><img src="https://placehold.co/1000x500/DB4437/FFFFFF?text=Teste+dos+Leitores+RFID" alt="Teste dos Leitores RFID" class="w-full h-full object-cover"></div>
+                    <div class="w-full flex-shrink-0 h-full"><img src="https://placehold.co/1000x500/F4B400/FFFFFF?text=Desenvolvimento+do+Dashboard" alt="Desenvolvimento do Dashboard" class="w-full h-full object-cover"></div>
+                    <div class="w-full flex-shrink-0 h-full"><img src="https://placehold.co/1000x500/0F9D58/FFFFFF?text=Instalação+na+Sala" alt="Instalação na Sala" class="w-full h-full object-cover"></div>
+                </div>
+                <button id="prevBtn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition"><i class="fas fa-chevron-left text-gray-800"></i></button>
+                <button id="nextBtn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition"><i class="fas fa-chevron-right text-gray-800"></i></button>
+            </div>
+        </section>
+         <!-- Seção Roadmap de Implantação -->
+        <section id="roadmap" class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-center mb-4">Roadmap de Implantação</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Nossa jornada, da concepção à criação de valor para o campus. Cada etapa representa um marco no desenvolvimento do projeto Smart Campus.</p>
+            <div class="roadmap-container max-w-4xl mx-auto">
+                <!-- Linha 1 -->
+                <div class="roadmap-row">
+                    <div class="roadmap-item blue"><div class="roadmap-icon"><i class="fas fa-clipboard-list"></i></div><span>Requisitos Funcionais</span></div>
+                    <span class="roadmap-connector">&rarr;</span>
+                    <div class="roadmap-item orange"><div class="roadmap-icon"><i class="fas fa-users"></i></div><span>Projetos (Clientes Internos)</span></div>
+                    <span class="roadmap-connector">&rarr;</span>
+                    <div class="roadmap-item orange"><div class="roadmap-icon"><i class="fas fa-handshake"></i></div><span>Projetos (Clientes Externos)</span></div>
+                </div>
+                <!-- Linha 2 -->
+                <div class="roadmap-row">
+                    <div class="roadmap-item purple"><div class="roadmap-icon"><i class="fas fa-user-graduate"></i></div><span>Capacitação</span></div>
+                    <span class="roadmap-connector">&larr;</span>
+                    <div class="roadmap-item orange"><div class="roadmap-icon"><i class="fas fa-tools"></i></div><span>Ferramentas</span></div>
+                    <span class="roadmap-connector">&larr;</span>
+                    <div class="roadmap-item blue"><div class="roadmap-icon"><i class="fas fa-sitemap"></i></div><span>Arquitetura Analítica</span></div>
+                    <span class="roadmap-connector">&larr;</span>
+                    <div class="roadmap-item green"><div class="roadmap-icon"><i class="fas fa-sync-alt"></i></div><span>Sustentação</span></div>
+                </div>
+                <!-- Linha 3 -->
+                <div class="roadmap-row">
+                    <div class="roadmap-item orange"><div class="roadmap-icon"><i class="fas fa-server"></i></div><span>Tecnologia e Ambientes</span></div>
+                    <span class="roadmap-connector">&rarr;</span>
+                    <div class="roadmap-item blue"><div class="roadmap-icon"><i class="fas fa-balance-scale"></i></div><span>Governança</span></div>
+                </div>
+                 <!-- Linha 4 -->
+                 <div class="roadmap-row">
+                    <div class="roadmap-item green"><div class="roadmap-icon"><i class="fas fa-theater-masks"></i></div><span>Cultura</span></div>
+                    <span class="roadmap-connector">&rarr;</span>
+                    <div class="roadmap-item purple"><div class="roadmap-icon"><i class="fas fa-project-diagram"></i></div><span>Estrutura Organizacional</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Dashboard Completo com Abas -->
+        <section id="dashboard" class="bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-2">Dashboard de Ocupação em Tempo Real</h2>
+            <p class="text-center text-gray-500 mb-8">Clique em um bloco para expandir e ver as plantas dos andares.</p>
+            
+            <div id="accordion-container" class="space-y-4">
+                <!-- Bloco A -->
+                <div>
+                    <button class="tab-btn w-full text-left p-4 bg-blue-500 text-white font-bold rounded-lg text-xl flex justify-between items-center transition duration-300">
+                        <span>Bloco A</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="tab-content bg-gray-50 rounded-b-lg p-4 space-y-6">
+                        <!-- Piso Térreo -->
+                        <div>
+                             <h3 class="map-floor-title">Piso Térreo</h3>
+                             <div class="map-wrapper grid grid-cols-6 gap-2" style="grid-template-rows: repeat(8, 35px);">
+                                <div id="sala-AT01" class="map-room col-span-2 row-span-2">Laboratório Análise de Bebidas</div>
+                                <div id="sala-AT02" class="map-room col-start-3">Adega</div>
+                                <div id="sala-AT03" class="map-room">Lab. Microbiologia</div>
+                                <div id="sala-AT04" class="map-room col-span-2 row-span-2">Planta de Chocolates e Derivados de Leite</div>
+                                <div id="sala-AT05" class="map-room col-start-6 row-start-3 row-span-2">Cabine Primária de Energia</div>
+                                
+                                <div id="sala-AT06" class="map-room col-start-4 row-start-2">Apoio</div>
+                                <div id="sala-AT07" class="map-room col-start-4 row-start-3">S. Direção</div>
+                                <div id="sala-AT08" class="map-room col-span-2 row-start-4">Secretaria</div>
+
+                                <div class="col-start-4 row-start-4 flex justify-around">
+                                    <div id="sala-AT09" class="map-room w-1/2">WC Fem</div>
+                                    <div id="sala-AT10" class="map-room w-1/2">WC Masc</div>
+                                </div>
+                                <div id="sala-AT11" class="map-room col-start-4 row-start-5">Depósito</div>
+
+                                <div id="sala-AT12" class="map-room col-span-2 row-start-5">Recepção</div>
+                                <div id="sala-AT13" class="map-room col-start-6 row-start-5 row-span-2">Portaria</div>
+                                
+                                <div id="sala-AT14" class="map-room col-span-2 row-start-4">Coordenação</div>
+                                <div id="sala-AT15" class="map-room col-start-1 col-span-2 row-start-5">Dep. Panificação</div>
+                                <div id="sala-AT16" class="map-room col-start-3 row-start-5">S. Baterias</div>
+                                <div id="sala-AT17" class="map-room col-start-4 row-start-6">CPD</div>
+                                <div id="sala-AT18" class="map-room col-span-2 row-start-6">Arquivo Morto</div>
+
+                                <div id="sala-AT19" class="map-room col-start-3 row-start-6">Sala Reuniões</div>
+                                
+                                <div id="sala-AT20" class="map-room col-span-2 row-start-6 row-end-9">Panificação e Confeitaria</div>
+                                <div id="sala-AT21" class="map-room col-start-3 row-start-7 row-end-9">Planta de Ração</div>
+                                <div id="sala-AT22" class="map-room col-start-4 row-start-7 row-end-9">Planta de Cerveja</div>
+                                <div id="sala-AT23" class="map-room col-start-5 row-start-7 row-end-9">Planta de Carnes Quentes</div>
+                                <div id="sala-AT24" class="map-room col-start-6 row-start-7 row-end-9">Planta de Carnes</div>
+                            </div>
+                        </div>
+                        <!-- 1º Andar -->
+                        <div>
+                            <h3 class="map-floor-title">1º Andar</h3>
+                            <div class="map-wrapper">
+                                <div class="grid grid-cols-[1fr_auto_1fr] gap-2">
+                                    <div class="space-y-2 flex flex-col">
+                                        <div id="sala-A100" class="map-room h-16">Lab. Avaliação Q. Alimentos</div>
+                                        <div id="sala-A103" class="map-room h-24">Sala de Aula 1</div>
+                                        <div id="sala-A104" class="map-room h-24">Lab. Microbiologia e Controle Qualidade</div>
+                                        <div id="sala-A105" class="map-room h-24">Lab. Bromatologia</div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                         <div id="sala-A101" class="map-room h-16 w-32 mb-2">Cozinha Experimental</div>
+                                         <div class="border-2 border-dashed border-gray-400 w-full h-full rounded-md"></div>
+                                    </div>
+                                    <div class="space-y-2 flex flex-col">
+                                        <div id="sala-A102" class="map-room h-16">Lab. Informática</div>
+                                        <div id="sala-A106" class="map-room h-16">Sala de Aula 2</div>
+                                        <div id="sala-A107" class="map-room h-16">Sala de Aula 3</div>
+                                        <div id="sala-A108" class="map-room h-16">Sala de Aula 4</div>
+                                        <div id="sala-A109" class="map-room h-24">Auditório</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bloco B -->
+                <div>
+                    <button class="tab-btn w-full text-left p-4 bg-green-500 text-white font-bold rounded-lg text-xl flex justify-between items-center transition duration-300">
+                        <span>Bloco B</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="tab-content bg-gray-50 rounded-b-lg p-4 space-y-6">
+                         <div>
+                            <h3 class="map-floor-title">Piso Térreo</h3>
+                            <p class="text-center text-gray-600">[Planta do Bloco B - Térreo aqui]</p>
+                         </div>
+                         <div>
+                            <h3 class="map-floor-title">1º Andar</h3>
+                            <p class="text-center text-gray-600">[Planta do Bloco B - 1º Andar aqui]</p>
+                         </div>
+                    </div>
+                </div>
+                <!-- Bloco C -->
+                <div>
+                    <button class="tab-btn w-full text-left p-4 bg-yellow-500 text-white font-bold rounded-lg text-xl flex justify-between items-center transition duration-300">
+                        <span>Bloco C</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="tab-content bg-gray-50 rounded-b-lg p-4 space-y-6">
+                        <!-- Piso Térreo Bloco C -->
+                        <div>
+                           <h3 class="map-floor-title">Piso Térreo</h3>
+                            <div class="map-wrapper grid grid-cols-5 gap-2" style="grid-template-rows: repeat(6, 40px);">
+                                <div id="sala-CT01" class="map-room col-span-2 row-span-2">Lab. Controle de Processos</div>
+                                <div id="sala-CT02" class="map-room col-start-3 row-start-1">Sanit. Fem.</div>
+                                <div id="sala-CT03" class="map-room col-start-3 row-start-2">Sanit. Masc.</div>
+                                <div id="sala-CT04" class="map-room col-span-2 row-start-1 row-span-2">Lab. Instrumentação II</div>
+                                <div id="sala-CT05" class="map-room col-start-5 row-start-3">Sala NR1</div>
+                                <div id="sala-CT06" class="map-room col-start-1 row-start-3">Compressor</div>
+                                <div id="sala-CT07" class="map-room col-start-3 row-start-3 col-span-2">Planta de Leite e Derivados</div>
+                                <div id="sala-CT08" class="map-room col-start-1 row-start-4">Manutenção</div>
+                                <div id="sala-CT09" class="map-room col-start-2 row-start-4">CCM</div>
+                                <div id="sala-CT10" class="map-room col-span-2 row-start-5 row-span-2">Lab. UPLAB</div>
+                                <div id="sala-CT11" class="map-room col-start-3 row-start-6">Sala de Apoio</div>
+                                <div id="sala-CT12" class="map-room col-span-2 row-start-4 row-span-2">Lab. IOT</div>
+                            </div>
+                        </div>
+                         <!-- 1º Andar Bloco C -->
+                         <div>
+                            <h3 class="map-floor-title">1º Andar</h3>
+                             <div class="map-wrapper grid grid-cols-5 gap-2" style="grid-template-rows: repeat(5, 45px);">
+                                <div id="sala-C101" class="map-room">Lab. Redes</div>
+                                <div id="sala-C102" class="map-room">Lab. Sist. Eletrônicos</div>
+                                <div id="sala-C103" class="map-room">Sala Especialistas</div>
+                                <div class="col-start-4 row-span-2 flex flex-col gap-2">
+                                     <div id="sala-C104" class="map-room flex-1">Sanit. Masc.</div>
+                                     <div id="sala-C105" class="map-room flex-1">Sanit. Fem.</div>
+                                </div>
+                                <div id="sala-C106" class="map-room col-start-5 row-span-2">Laboratório de Instrumentação I</div>
+                                <div id="sala-C107" class="map-room col-start-4 row-start-3">Sala de Apoio</div>
+                                <div id="sala-C108" class="map-room col-span-2 row-start-2 row-span-2">MDI</div>
+                                <div id="sala-C109" class="map-room col-span-2 row-start-4 row-span-2">Laboratório de Informática 4</div>
+                                <div id="sala-C110" class="map-room row-start-4 row-span-2">Laboratório de Informática 3</div>
+                                <div id="sala-C111" class="map-room row-start-4 row-span-2">Laboratório de Informática 2</div>
+                                <div id="sala-C112" class="map-room row-start-4 row-span-2">Laboratório de Informática 1</div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legenda -->
+            <div class="flex justify-center sm:justify-end space-x-6 mt-8 text-sm font-semibold">
+                <div class="flex items-center"><span class="w-5 h-5 bg-green-200 border border-green-400 rounded-sm mr-2"></span> Livre</div>
+                <div class="flex items-center"><span class="w-5 h-5 bg-red-200 border border-red-400 rounded-sm mr-2"></span> Ocupado</div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Lógica para o Slider de Imagens ---
+            const track = document.getElementById('slider-track');
+            if (track) {
+                const slides = Array.from(track.children);
+                const nextButton = document.getElementById('nextBtn');
+                const prevButton = document.getElementById('prevBtn');
+                if (slides.length > 0) {
+                    let slideWidth = slides[0].getBoundingClientRect().width;
+                    let currentIndex = 0;
+
+                    const goToSlide = (targetIndex) => {
+                        if (targetIndex < 0) targetIndex = slides.length - 1;
+                        else if (targetIndex >= slides.length) targetIndex = 0;
+                        track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+                        currentIndex = targetIndex;
+                    };
+
+                    nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+                    prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+                    
+                    window.addEventListener('resize', () => {
+                        slideWidth = slides[0].getBoundingClientRect().width;
+                        goToSlide(currentIndex);
+                    });
+                }
+            }
+
+            // --- Lógica para o Dashboard de Ocupação (Acordeão e Status) ---
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+
+                    // Fecha todos os outros
+                    tabButtons.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                            otherButton.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Abre ou fecha o clicado
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            function updateRoomStatus() {
+                const rooms = document.querySelectorAll('.map-room');
+                rooms.forEach(room => {
+                    const isOccupied = Math.random() > 0.5;
+                    room.classList.toggle('occupied', isOccupied);
+                    room.classList.toggle('free', !isOccupied);
+                });
+            }
+
+            updateRoomStatus(); // Atualiza na primeira vez
+            setInterval(updateRoomStatus, 10000); // Atualiza a cada 10 segundos
+        });
+    </script>
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js">
+</script>
+</body>
+</html>
+

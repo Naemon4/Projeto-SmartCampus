@@ -1,0 +1,198 @@
+/*
+ * CSS para o arquivo sobre.html
+ * Este CSS substitui as classes utilitárias de um framework como o Tailwind CSS
+ * para garantir que o layout funcione sem dependências externas.
+ */
+
+/* Variáveis de Cores (Opcional, mas útil) */
+:root {
+    --color-primary: #1e40af; /* Azul escuro para títulos e detalhes */
+    --color-secondary: #3b82f6; /* Azul mais claro para destaque */
+    --color-text-dark: #1f2937; /* Cinza escuro para texto principal */
+    --color-text-light: #4b5563; /* Cinza médio para parágrafos */
+    --color-background-card: #f3f4f6; /* Cinza claro para o fundo dos cards */
+    --color-white: #ffffff;
+}
+
+/* Estilos Globais e Reset Básico */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb; /* Cor de fundo levemente diferente do card */
+}
+
+/* Container Principal da Seção */
+#sobre {
+    /* container mx-auto px-6 py-20 bg-white rounded-lg my-10 shadow-sm */
+    max-width: 1280px; /* max-w-6xl (aproximadamente) */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5rem 1.5rem; /* py-20 (80px) e px-6 (24px) */
+    background-color: var(--color-white);
+    border-radius: 0.5rem; /* rounded-lg */
+    margin-top: 2.5rem; /* my-10 */
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
+}
+
+/* Títulos */
+#sobre h2 {
+    /* text-3xl font-bold text-center mb-4 */
+    font-size: 1.875rem; /* 3xl */
+    font-weight: 700; /* bold */
+    text-align: center;
+    margin-bottom: 1rem; /* mb-4 */
+    color: var(--color-text-dark);
+}
+
+#sobre h3 {
+    /* text-2xl font-bold text-center text-gray-800 mb-10 */
+    font-size: 1.5rem; /* 2xl */
+    font-weight: 700; /* bold */
+    text-align: center;
+    color: var(--color-text-dark);
+    margin-bottom: 2.5rem; /* mb-10 */
+}
+
+/* Descrição do Projeto */
+.text-gray-600 {
+    color: var(--color-text-light);
+}
+
+.max-w-3xl {
+    max-width: 48rem; /* max-w-3xl */
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mb-12 {
+    margin-bottom: 3rem; /* mb-12 */
+}
+
+.space-y-4 > p {
+    margin-top: 1rem; /* space-y-4 */
+    margin-bottom: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Grid da Equipe */
+.grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+    max-width: 1024px; /* max-w-6xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsividade do Grid (Substituindo grid-cols-1, sm:grid-cols-2, lg:grid-cols-4) */
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) { /* sm: */
+    .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) { /* lg: */
+    .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Card do Aluno */
+.text-center.bg-gray-100 {
+    /* text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 */
+    background-color: var(--color-background-card);
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    transition: transform 0.3s ease-in-out; /* transition-transform */
+}
+
+.text-center.bg-gray-100:hover {
+    transform: scale(1.05); /* hover:scale-105 */
+}
+
+/* Imagem do Aluno */
+.w-32 {
+    width: 8rem; /* w-32 */
+}
+
+.h-32 {
+    height: 8rem; /* h-32 */
+}
+
+.mb-4 {
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.rounded-full {
+    border-radius: 9999px; /* rounded-full */
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+/* Nome do Aluno */
+.text-xl {
+    font-size: 1.25rem; /* text-xl */
+}
+
+.text-gray-900 {
+    color: #111827; /* text-gray-900 */
+}
+
+/* Cargo/Função */
+.font-semibold {
+    font-weight: 600; /* font-semibold */
+}
+
+/* Cores específicas dos cargos */
+.text-blue-600 {
+    color: #2563eb; /* Gerente de Projeto */
+}
+
+.text-red-600 {
+    color: #dc2626; /* Desenvolvedor Back-end */
+}
+
+.text-yellow-600 {
+    color: #ca8a04; /* Desenvolvedor Front-end */
+}
+
+.text-green-600 {
+    color: #16a34a; /* Analista de IoT & Dados */
+}
+
+/* Ajuste para o contêiner da imagem */
+.mx-auto.w-32.h-32.mb-4 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Opcional: Estilo para a imagem base64 (apenas para garantir que o object-fit funcione) */
+.mx-auto.w-32.h-32.mb-4 img {
+    display: block;
+}

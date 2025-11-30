@@ -1,0 +1,78 @@
+
+/* ===== FORMULÁRIO CONTAINER E LAYOUT (Seu CSS Original) ===== */
+.form-agendamento {
+    background: #e7dede;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.form-agendamento h2 {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* --- Campos de Formulário --- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-agendamento label {
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Aplica o estilo de input/select a todos os elementos de formulário */
+.form-agendamento input[type="text"],
+.form-agendamento input[type="number"],
+.form-agendamento select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    margin-top: 0;
+    background-color: white;
+}
+
+/* --- Botão (Seu CSS Original) --- */
+.form-agendamento button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.form-agendamento button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para a linha divisória (hr) */
+.form-agendamento hr {
+    margin: 20px 0;
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+/* Garantir que o feedback fique visível */
+#feedback {
+    min-height: 20px; /* Espaço mínimo */
+}
