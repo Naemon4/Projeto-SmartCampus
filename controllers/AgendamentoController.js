@@ -1,6 +1,9 @@
-const Agendamento = require('../models/Agendamento');
 const Usuario = require('../models/Usuario');
 const Sala = require('../models/Sala');
+const Predio = require('../models/Predio');
+const Andar = require('../models/Andar');
+const Agendamento = require('../models/Agendamento');
+
 
 class AgendamentoController {
 
@@ -8,34 +11,54 @@ class AgendamentoController {
 
         try {
             
-            const { usuario_id, sala_id, data_agendamento, horario_inicio, horario_fim } = req.body;
+            const { predio_nome, andar, sala_nome, data, horario_inicio, horario_fim } = req.body;
+            const usuario_id = req.user.id;
 
-            // Validações básicas
-            if (!usuario_id || !sala_id || !data_agendamento || !horario_inicio || !horario_fim) {
+            if (!predio_nome || !andar || !sala_nome || !data || !horario_inicio || !horario_fim) {
                 throw new Error('Todos os campos são obrigatórios');
             }
 
-            // Verifica se a sala existe
-            const sala = await Sala.findByPk(sala_id);
-            const usuario = await Usuario.findByPk(usuario_id);
+            const predio = await Predio.findOne({ where: { nome: predio_nome } });
 
-            if (!sala || !usuario) {
-                throw new Error('Sala não encontrada');
+            if (!predio) {
+                throw new Error('Prédio não encontrado');
             }
 
-            // Cria o agendamento
-            const agendamento = await Agendamento.create({
+            const andarExiste = await Andar.findOne({ where: { numero: andar,  predioId: predio.id} });
+
+            if (!andarExiste) {
+                throw new Error('Andar não encontrado no prédio especificado');
+            }
+
+            const sala = await Sala.findOne({ where: { nome: sala_nome, andarId: andarExiste.id } });
+
+            if (!sala) {
+                throw new Error('Sala não encontrada no andar especificado');
+            }
+
+            const agendamentoExistente = await Agendamento.findOne({where: {
+                sala_id: sala.id,
+                data_agendamento: data,
+                horario_inicio: horario_inicio,
+                horario_fim: horario_fim
+            }});
+
+            if(agendamentoExistente){
+                throw new Error('Já existe um agendamento para esta sala neste horário');
+            }
+
+            const novoAgendamento = await Agendamento.create({
                 usuario_id,
-                sala_id,
-                data_agendamento,
-                horario_inicio,
-                horario_fim
+                sala_id: sala.id,
+                data_agendamento: data,
+                horario_inicio: horario_inicio,
+                horario_fim: horario_fim
             });
 
-            res.json({ success: true, message: 'Agendamento realizado com sucesso!'});
+            res.json({ success: true, data: novoAgendamento });
 
         } catch (error) {
-            console.error('Erro ao agendar', error.message)
+            console.error('Erro ao criar agendamento', error.message)
             return res.status(500).json({success: false, message: error.message})
         }
 

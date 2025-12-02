@@ -48,11 +48,7 @@
         .cil {
             color: #4773c5; /* Azul cobalto */
         }
-        
-        /* Estilo para usar a fonte Montserrat com Tailwind */
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
+
 
         /* Footer */
 
@@ -137,44 +133,43 @@
 
     <!-- Cabeçalho e Navegação -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-           <!-- Estrutura do Logo -->
-                <div class="logo">
-                    <span class="sala">Sala</span><span class="fa">Fá</span><span class="cil">cil</span>
-                </div>
+  <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
+      <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span class="text-[#4773c5]">cil</span>
+    </div>
 
+    <!-- Menu Desktop -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition">Sobre</a>
+      <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+      <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+      <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+      <a href="/registro" class="text-gray-600 hover:text-blue-600 transition">Cadastro</a>
+      <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+    </div>
 
+    <!-- Botão Mobile -->
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-
-            
-            <!-- Menu para Desktop -->
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Sobre</a>
-                <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition duration-300">Agendar</a>
-                <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition duration-300">Dashboard</a>
-                <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition duration-300">Cadastrar espaço</a>
-                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition duration-300">Cadastro</a>
-                <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Login</a>
-            </div>
-
-            <!-- Botão do Menu Mobile -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-        
-        <!-- Menu Mobile (oculto por padrão) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
-            <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
-            <a href="Agendar.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
-            <a href="cadastro.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
-            <a href="login.html" class="block py-2 px-6 text-sm text-blue-600 hover:bg-gray-100">Login</a>
-        </div>
-    </header>
+  <!-- Menu Mobile -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white">
+    <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
+    <a href="/agendar" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+    <a href="/dashboard" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+    <a href="/cadastrarEspaco" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar espaço</a>
+    <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
+    <a href="/login" class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Login</a>
+  </div>
+</header>
 
     <!-- Conteúdo Principal -->
     <main>
@@ -245,7 +240,7 @@
                 <!-- Card do Aluno 4 -->
                 <div class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
                     <div class="mx-auto w-32 h-32 mb-4">
-                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="" alt="Foto do Aluno 4"
+                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="" alt="Foto do Aluno 4">
                     </div>
                     <h4 class="text-xl font-bold text-gray-900">Beatriz França</h4>
                     <p class="text-green-600 font-semibold">Analista de IoT & Dados</p>

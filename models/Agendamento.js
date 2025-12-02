@@ -32,3 +32,5 @@ Usuario.hasMany(Agendamento, { foreignKey: 'usuario_id' });
 
 Agendamento.belongsTo(Sala, { foreignKey: 'sala_id' });
 Sala.hasMany(Agendamento, { foreignKey: 'sala_id' });
+
+module.exports = Agendamento;

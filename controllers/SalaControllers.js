@@ -3,6 +3,7 @@ const Usuario = require('../models/Usuario');
 const Andar = require('../models/Andar');
 const Predio = require('../models/Predio');
 const path = require('path');
+const QRCode = require('qrcode');
 const PDFDocument = require('pdfkit');
 
 class SalaController {
@@ -50,6 +51,7 @@ class SalaController {
         }
 
     }
+    
     static async registrarSala(req, res) {
 
         try {
