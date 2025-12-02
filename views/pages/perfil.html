@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(to right, #3a5269, #3a6192, #376fa3, #4773c5); /* Gradiente seguindo a tabela de cores */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-button {
+            background-color: #3a5269;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .back-button:hover {
+            background-color: #376fa3; /* Azul marinho mais claro */
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            margin-left: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Hover sutil para contraste */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .profile-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .user-name {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #3a5269; /* Azul escuro/acinzentado */
+        }
+        .admin-status {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .admin-badge {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .non-admin-badge {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .profile-fields {
+            text-align: left;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .field {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .field-label {
+            font-weight: bold;
+            color: #3a6192; /* Azul marinho */
+            flex: 0 0 150px;
+        }
+        .field-value {
+            flex: 1;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .edit-profile, .add-user {
+            background-color: #376fa3; /* Azul marinho mais claro */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .edit-profile:hover, .add-user:hover {
+            background-color: #4773c5; /* Azul cobalto */
+        }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .menu {
+                margin-top: 10px;
+            }
+            .menu li {
+                margin-left: 0;
+                margin-right: 10px;
+            }
+            .field {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .field-label {
+                margin-bottom: 5px;
+            }
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Voltar</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="reservas.html">Minhas reservas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="profile-container">
+            <img src="https://via.placeholder.com/100" alt="Foto de Perfil" class="profile-picture">
+            <div class="user-name">Nome do Usuário</div>
+            <div class="admin-status">
+                <span class="admin-badge">Administrador</span> <!-- Ou <span class="non-admin-badge">Não Administrador</span> -->
+            </div>
+            <div class="profile-fields">
+                <div class="field">
+                    <span class="field-label">Email:</span>
+                    <span class="field-value">usuario@example.com</span>
+                </div>
+                <div class="field">
+                    <span class="field-label">Senha</span> 
+                    <span class="field-value">*************</span> 
+                    <div>
+                        <button style="background-color: #3a6192; -webkit-text-fill-color: #f0f0f0;border-color: #3a6192;">Mostrar Senha</button> 
+                        <button style="background-color: #3a6192; -webkit-text-fill-color: #f0f0f0;border-color: #3a6192;">Alterar senha</button> 
+                    </div>
+                </div>
+                <div class="field">
+                    <span class="field-label">CPF</span>
+                    <span class="field-value">123456789-01</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="edit-profile">Editar Perfil</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
