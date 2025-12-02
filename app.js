@@ -82,7 +82,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/agendar', (req, res) =>{
-  res.sendFile(path.join(__dirname), 'views/pages/agendar.html')
+  res.sendFile(path.join(__dirname, 'views/pages/agendar.html'))
 })
 
 app.get('/cadastrarEspaco', (req, res) => {
@@ -93,6 +93,15 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/pages/dashboard.html'))
 })
 
+app.get('/perfil', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/pages/perfil.html'))
+})
+
+require('./models/Agendamento');
+require('./models/Sala');
+require('./models/Usuario');
+require('./models/Predio');
+require('./models/Andar');
 // Inicializa DB e sobe servidor
 initDB().then(() => {
     app.listen(PORT, () => {

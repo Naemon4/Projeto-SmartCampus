@@ -1,202 +1,123 @@
-  <!DOCTYPE html>
-  <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agendamento de Salas</title>
-    <link rel="stylesheet" href="../css/agendar.css" />
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento de Salas</title>
 
   <!-- Tailwind CSS -->
-      <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-      <!-- Google Fonts: Montserrat -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
 
-      <!-- Font Awesome for Icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body class="font-[Montserrat] bg-gray-50 text-gray-800">
 
-      <!-- Chart.js para Gráficos -->
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Cabeçalho e Navegação -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
+        <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span
+          class="text-[#4773c5]">cil</span>
+      </div>
 
-      <style>
-          /* Estilo para usar a fonte Montserrat com Tailwind */
-          body {
-              font-family: 'Montserrat', sans-serif;
-          }
+      <!-- Menu Desktop -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition">Sobre</a>
+        <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+        <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+        <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+        <a href="/registro" class="text-gray-600 hover:text-blue-600 transition">Cadastro</a>
+        <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+      </div>
 
-          /* Efeito suave de transição para o slider */
-          .slider-track {
-              transition: transform 0.5s ease-in-out;
-          }
+      <!-- Botão Mobile -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
 
-          /* Estilos principais do logo */
-          .logo {
-              font-family: 'Poppins', sans-serif;
-              font-size: clamp(2.2rem, 8vw, 3rem);
-              font-weight: 700;
-              letter-spacing: -1.5px;
-              margin-bottom: 1rem;
-          }
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white">
+      <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
+      <a href="/agendar" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+      <a href="/dashboard" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+      <a href="/cadastrarEspaco" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar espaço</a>
+      <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
+      <a href="/login" class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Login</a>
+    </div>
+  </header>
 
-          /* Cores para cada parte do texto do logo */
-          .smart {
-              color: #2c3e50;
-          }
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="max-w-2xl mx-auto p-6">
+    <form id="form-agendamento" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+      <h2 class="text-2xl font-bold text-center mb-4">Agendamento de Sala</h2>
 
-          .ca {
-              color: #3a6192;
-          }
+      <label for="predio-select" class="block font-medium">Prédio:</label>
+      <select id="predio-select" required class="w-full border rounded px-3 py-2">
+        <option value="">-- Escolha um Prédio --</option>
+      </select>
 
-          .mp {
-              color: #376fa3;
-          }
+      <label for="andar-select" class="block font-medium">Andar:</label>
+      <select id="andar-select" disabled required class="w-full border rounded px-3 py-2">
+        <option value="">-- Escolha um Andar --</option>
+      </select>
 
-          .us {
-              color: #4773c5;
-          }
+      <label for="sala-select" class="block font-medium">Sala:</label>
+      <select id="sala-select" disabled required class="w-full border rounded px-3 py-2">
+        <option value="">-- Escolha uma Sala --</option>
+      </select>
 
-          /* Cabeçalho e navegação */
-          header {
-              background-color: white;
-              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-              position: sticky;
-              top: 0;
-              z-index: 50;
-          }
+      <label for="date-display" class="block font-medium">Data:</label>
+      <input type="date" id="date-display" required class="w-full border rounded px-3 py-2" />
 
-          #menu menu-desktop a {
-              color: #4b5563;
-              transition: color 0.3s;
-          }
+      <label for="time-display-start" class="block font-medium">Horário de Início:</label>
+      <input type="time" id="time-display-start" required class="w-full border rounded px-3 py-2" />
 
-          #menu menu-desktop a:hover {
-              color: #3b82f6;
-          }
+      <label for="time-display-end" class="block font-medium">Horário do Fim:</label>
+      <input type="time" id="time-display-end" required class="w-full border rounded px-3 py-2" />
 
-          #menu menu-mobile a {
-              background-color: white;
-              padding: 8px 16px;
-              font-size: 14px;
-              color: #4b5563;
-              text-align: left;
-          }
 
-          #menu menu-mobile a:hover {
-              background-color: #f3f4f6;
-          }
+      <div class="flex gap-4 justify-center mt-4">
+        <button type="submit" id="btn-submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Agendar</button>
+        <button type="button" id="btn-clear"
+          class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Limpar</button>
+      </div>
+    </form>
 
-          .button-login {
-              background-color: #3b82f6;
-              color: white;
-              padding: 8px 16px;
-              border-radius: 4px;
-              font-weight: 500;
-              transition: background-color 0.3s;
-          }
-
-          .button-login:hover {
-              background-color: #2563eb;
-          }
-      </style>
-  </head>
-
-  <body class="bg-gray-50 text-gray-800">
-
-      <!-- Cabeçalho e Navegação -->
-      <header class="bg-white shadow-md sticky top-0 z-50">
-          <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-
-              <!-- Estrutura do Logo -->
-              <div class="logo">
-                  <span class="smart">Sa<span><span class="ca">la</span><span class="mp">Fá</span><span class="us">cil</span>
-              </div>
-
-              <!-- Menu para Desktop -->
-              <div class="hidden md:flex items-center space-x-6 menu-desktop">
-                  <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition duration-300" id="menu">Sobre</a>
-                  <a href="Agendar.html" class="text-gray-600 hover:text-blue-600 transition duration-300" id="menu">Agendar</a>
-                  <a href="cadastro.html" class="text-gray-600 hover:text-blue-600 transition duration-300" id="menu">Cadastro</a>
-                  <a href="cadastrolugar.html" class="text-gray-600 hover:text-blue-600 transition duration-300" id="menu">Cadastro Localização</a>
-                  <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300" id="login">Login</a>
-                  <a href="perfil.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300" id="perfil">Perfil</a>
-              </div>
-
-              <!-- Botão do Menu Mobile -->
-              <div class="md:hidden">
-                  <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                      </svg>
-                  </button>
-              </div>
-
-          </nav>
-
-          <!-- Menu Mobile (oculto por padrão) -->
-          <div id="mobile-menu" class="hidden md:hidden bg-white">
-              <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100" id="menu">Sobre</a>
-              <a href="Agendar.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100" id="menu">Agendar</a>
-              <a href="cadastro.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
-              <a href="login.html" class="block py-2 px-6 text-sm text-blue-600 hover:bg-gray-100">Login</a>
-          </div>
-      </header>
-
-    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
-    <main>
-      <form id="form-agendamento" class="form-agendamento">
-        <h2>Agendamento de Sala</h2>
-
-        <label for="select-block">Bloco:</label>
-        <select id="select-block" required>
-          <option value="">Selecione o bloco</option>
-          <option value="A">Bloco A</option>
-          <option value="B">Bloco B</option>
-          <option value="C">Bloco C</option>
-        </select>
-
-        <label for="select-floor">Andar:</label>
-        <select id="select-floor" disabled required>
-          <option value="">Selecione o andar</option>
-          <option value="ground">Térreo</option>
-          <option value="first">1º Andar</option>
-        </select>
-
-        <label for="select-room">Sala:</label>
-        <select id="select-room" disabled required>
-          <option value="">Selecione a sala</option>
-        </select>
-  <label for="date-display">Data:</label>
-        <input type="date" id="date-display" required />
-      <label for="time-display">Horário de Inicio:</label>
-  <input type="text" id="time-display-start" placeholder="00:00" maxlength="5" required />
-  <label for="time-display">Horário do Fim:</label>
-  <input type="text" id="time-display-end" placeholder="00:00" maxlength="5" required />
- 
-
-        <button type="submit" id="btn-submit">Agendar</button>
-        <button type="button" id="btn-clear">Limpar</button>
-      </form>
-  
     <!-- ===== POP-UP DO CALENDÁRIO ===== -->
-    <div id="modal-calendar" class="modal" aria-hidden="true">
-      <div class="modal-content">
-        <h3>Selecione uma data</h3>
-        <input type="date" id="calendar-input" />
-        <div class="modal-buttons">
-          <button id="modal-ok">OK</button>
-          <button id="modal-cancel">Cancelar</button>
+    <div id="modal-calendar" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      aria-hidden="true">
+      <div class="bg-white p-6 rounded-lg shadow-md w-80">
+        <h3 class="text-lg font-bold mb-4">Selecione uma data</h3>
+        <input type="date" id="calendar-input" class="w-full border rounded px-3 py-2 mb-4" />
+        <div class="flex justify-end gap-2">
+          <button id="modal-ok"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">OK</button>
+          <button id="modal-cancel"
+            class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Cancelar</button>
         </div>
       </div>
     </div>
 
+  </main>
 
-    <!-- ===== RODAPÉ ===== -->
-    <footer>
-      <p id="footer-text">© <span id="year"></span> Monitoramento de Salas</p>
-    
-    </footer>
-  </body>
-    <script src="../js/agendar.js"></script>
-  </html>
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="bg-gray-800 text-white text-center py-4 mt-6">
+    <p id="footer-text">© <span id="year"></span> Monitoramento de Salas</p>
+  </footer>
+</body>
+<script src="../js/agendar.js"></script>
+
+</html>

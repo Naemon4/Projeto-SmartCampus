@@ -54,15 +54,7 @@ class UsuarioController {
         });
       }
 
-      const token = jwt.sign({ id: newUser.id }, SECRET, { expiresIn: "1h" });
-
-      res.cookie("token", token, {
-        httpOnly: true,   // não acessível via JS
-        secure: true,     // só em HTTPS
-        sameSite: "strict"
-      });
-
-      res.status(201).json({ success: true, message: "Usuário registrado com sucesso!", auth: true });
+      res.status(201).json({ success: true, message: "Usuário registrado com sucesso!"});
 
     } catch (error) {
       console.error("Erro ao registrar", error);
@@ -87,11 +79,11 @@ class UsuarioController {
         throw new Error("Credenciais inválidas");
       }
 
-      const token = jwt.sign({ id: usuario.id }, SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ id: usuario.id }, SECRET, { expiresIn: "10h" });
 
       res.cookie("token", token, {
         httpOnly: true,   // não acessível via JS
-        secure: true,     // só em HTTPS
+        secure: process.env.NODE_ENV === "production", // apenas em HTTPS
         sameSite: "strict"
       });
 
@@ -103,6 +95,37 @@ class UsuarioController {
       return res.status(500).json({ success: false, message: "Erro interno no servidor" });
     }
 
+  }
+
+  static async logout(req, res) {
+    try {
+      res.clearCookie("token");
+      res.json({ success: true, message: "Logout bem-sucedido" });
+    } catch (error) {
+      console.error("Erro ao dar logout", error);
+      return res.status(500).json({ success: false, message: "Erro interno no servidor" });
+    }
+  }
+
+  static async getPerfil(req, res) {
+    try {
+      const token = req.cookies.token;
+
+      const decoded = jwt.verify(token, SECRET);
+      const usuario = await Usuario.findByPk(decoded.id, {
+        attributes: { exclude: ['senha'] }
+      });
+
+      if (!usuario) {
+        return res.status(404).json({ success: false, message: "Usuário não encontrado" });
+      }
+
+      res.json({ success: true, user: usuario });
+
+    } catch (error) {
+      console.error("Erro ao buscar perfil", error);
+      return res.status(500).json({ success: false, message: "Erro interno no servidor" });
+    }
   }
 
 }

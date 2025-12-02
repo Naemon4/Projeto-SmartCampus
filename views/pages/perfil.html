@@ -1,206 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        .header {
-            background: linear-gradient(to right, #3a5269, #3a6192, #376fa3, #4773c5); /* Gradiente seguindo a tabela de cores */
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .back-button {
-            background-color: #3a5269;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .back-button:hover {
-            background-color: #376fa3; /* Azul marinho mais claro */
-        }
-        .menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .menu li {
-            margin-left: 20px;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .menu a:hover {
-            background-color: rgba(255, 255, 255, 0.2); /* Hover sutil para contraste */
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .profile-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-        .user-name {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #3a5269; /* Azul escuro/acinzentado */
-        }
-        .admin-status {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        .admin-badge {
-            background-color: #4CAF50;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .non-admin-badge {
-            background-color: #f44336;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .profile-fields {
-            text-align: left;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        .field {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .field-label {
-            font-weight: bold;
-            color: #3a6192; /* Azul marinho */
-            flex: 0 0 150px;
-        }
-        .field-value {
-            flex: 1;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .edit-profile, .add-user {
-            background-color: #376fa3; /* Azul marinho mais claro */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .edit-profile:hover, .add-user:hover {
-            background-color: #4773c5; /* Azul cobalto */
-        }
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .menu {
-                margin-top: 10px;
-            }
-            .menu li {
-                margin-left: 0;
-                margin-right: 10px;
-            }
-            .field {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .field-label {
-                margin-bottom: 5px;
-            }
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    <header class="header">
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">Voltar</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="reservas.html">Minhas reservas</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="profile-container">
-            <img src="https://via.placeholder.com/100" alt="Foto de Perfil" class="profile-picture">
-            <div class="user-name">Nome do Usuário</div>
-            <div class="admin-status">
-                <span class="admin-badge">Administrador</span> <!-- Ou <span class="non-admin-badge">Não Administrador</span> -->
+
+<body class="font-[Montserrat] bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
+                <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span
+                    class="text-[#4773c5]">cil</span>
             </div>
-            <div class="profile-fields">
-                <div class="field">
-                    <span class="field-label">Email:</span>
-                    <span class="field-value">usuario@example.com</span>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition">Sobre</a>
+                <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+                <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+                <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition">Cadastro</a>
+                <a href="/login"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
+            <a href="/agendar" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+            <a href="/dashboard" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+            <a href="/cadastrarEspaco" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar
+                espaço</a>
+            <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
+            <a href="/login"
+                class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Login</a>
+        </div>
+    </header>
+
+
+    <!-- Conteúdo -->
+    <div class="flex flex-col items-center p-6 max-w-2xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-md text-center w-full mb-6">
+            <img src="https://via.placeholder.com/100" alt="Foto de Perfil"
+                class="w-24 h-24 rounded-full object-cover mb-4">
+            <div class="text-2xl font-semibold text-[#3a5269] mb-2">Nome do Usuário</div>
+            <div class="text-sm text-gray-600 mb-4">
+                <span class="bg-green-600 text-white px-3 py-1 rounded">Administrador</span>
+                <!-- ou <span class="bg-red-600 text-white px-3 py-1 rounded">Não Administrador</span> -->
+            </div>
+
+            <!-- Campos -->
+            <div class="text-left mb-6 space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-[#3a6192] w-36">Email:</span>
+                    <span class="flex-1">usuario@example.com</span>
                 </div>
-                <div class="field">
-                    <span class="field-label">Senha</span> 
-                    <span class="field-value">*************</span> 
-                    <div>
-                        <button style="background-color: #3a6192; -webkit-text-fill-color: #f0f0f0;border-color: #3a6192;">Mostrar Senha</button> 
-                        <button style="background-color: #3a6192; -webkit-text-fill-color: #f0f0f0;border-color: #3a6192;">Alterar senha</button> 
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                    <span class="font-bold text-[#3a6192] w-36">Senha</span>
+                    <span class="flex-1">*************</span>
+                    <div class="flex gap-2">
+                        <button class="bg-[#3a6192] text-white px-3 py-1 rounded">Mostrar Senha</button>
+                        <button class="bg-[#3a6192] text-white px-3 py-1 rounded">Alterar Senha</button>
                     </div>
                 </div>
-                <div class="field">
-                    <span class="field-label">CPF</span>
-                    <span class="field-value">123456789-01</span>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-[#3a6192] w-36">CPF</span>
+                    <span class="flex-1">123456789-01</span>
                 </div>
             </div>
-            <div class="buttons">
-                <button class="edit-profile">Editar Perfil</button>
+
+            <!-- Botões -->
+            <div class="flex justify-center gap-4" id="buttonContainer">
+                <button class="bg-[#376fa3] text-white px-4 py-2 rounded hover:bg-[#4773c5] transition">
+                    Editar Perfil
+                </button>
+                <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition" id="logoutButton">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Botão que abre a popup -->
+            <div class="flex justify-center mt-6">
+                <button id="btn-meus-agendamentos"
+                    class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                    Meus Agendamentos
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Estrutura da Popup -->
+    <div id="popup-agendamentos"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+            <!-- Cabeçalho -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Meus Agendamentos</h2>
+                <button id="popup-close" class="text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+
+            <!-- Corpo da popup -->
+            <div id="popup-body" class="text-gray-700 space-y-2">
+                <!-- Aqui você pode preencher via JS os agendamentos -->
+                <p>Nenhum agendamento encontrado.</p>
+            </div>
+
+            <!-- Rodapé -->
+            <div class="flex justify-end mt-6">
+                <button id="popup-ok" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                    Fechar
+                </button>
             </div>
         </div>
     </div>
+
 </body>
+<script src="../js/perfilScript.js"></script>
+<script src="../js/verAgendamentos.js"></script>
+<script src="../js/admImpressao.js"></script>
+
 </html>
