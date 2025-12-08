@@ -66,9 +66,9 @@
         <div class="bg-white p-6 rounded-lg shadow-md text-center w-full mb-6">
             <img src="https://via.placeholder.com/100" alt="Foto de Perfil"
                 class="w-24 h-24 rounded-full object-cover mb-4">
-            <div class="text-2xl font-semibold text-[#3a5269] mb-2">Nome do Usuário</div>
+            <div class="text-2xl font-semibold text-[#3a5269] mb-2" id="nome">Nome do Usuário</div>
             <div class="text-sm text-gray-600 mb-4">
-                <span class="bg-green-600 text-white px-3 py-1 rounded">Administrador</span>
+                <span class="bg-green-600 text-white px-3 py-1 rounded" id="tipoUsuario">Administrador</span>
                 <!-- ou <span class="bg-red-600 text-white px-3 py-1 rounded">Não Administrador</span> -->
             </div>
 
@@ -76,7 +76,7 @@
             <div class="text-left mb-6 space-y-4">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-[#3a6192] w-36">Email:</span>
-                    <span class="flex-1">usuario@example.com</span>
+                    <span class="flex-1" id="email">usuario@example.com</span>
                 </div>
                 <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
                     <span class="font-bold text-[#3a6192] w-36">Senha</span>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-[#3a6192] w-36">CPF</span>
-                    <span class="flex-1">123456789-01</span>
+                    <span class="flex-1" id="cpf">123456789-01</span>
                 </div>
             </div>
 
@@ -120,7 +120,6 @@
             <!-- Cabeçalho -->
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold text-gray-800">Meus Agendamentos</h2>
-                <button id="popup-close" class="text-gray-500 hover:text-gray-700">&times;</button>
             </div>
 
             <!-- Corpo da popup -->

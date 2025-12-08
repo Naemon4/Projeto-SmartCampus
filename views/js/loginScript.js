@@ -19,7 +19,7 @@ form.addEventListener("submit", async (e) => {
         if (result.success) {
             alert("Login realizado com sucesso!");
             // Redireciona para página protegida
-            window.location.href = "/";
+            window.location.href = "/perfil";
         } else {
             alert("Erro: " + result.message);
         }

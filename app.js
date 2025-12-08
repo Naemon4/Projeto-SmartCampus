@@ -70,18 +70,18 @@ app.use('/api/predio', predioRoutes)
 
 // Rotas de páginas
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/pages/index.html'));
+  res.sendFile(path.join(__dirname, 'views/pages/index.html'));
 });
 
 app.get('/registro', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/pages/cadastro.html'));
+  res.sendFile(path.join(__dirname, 'views/pages/cadastro.html'));
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/pages/login.html'));
+  res.sendFile(path.join(__dirname, 'views/pages/login.html'));
 });
 
-app.get('/agendar', (req, res) =>{
+app.get('/agendar', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/pages/agendar.html'))
 })
 
@@ -97,6 +97,14 @@ app.get('/perfil', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/pages/perfil.html'))
 })
 
+app.get('/agendarNaHora', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/pages/agendado.html'))
+})
+
+app.get('/agendamentoFalhou', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/pages/naoAgendado.html'))
+})
+
 require('./models/Agendamento');
 require('./models/Sala');
 require('./models/Usuario');
@@ -104,9 +112,9 @@ require('./models/Predio');
 require('./models/Andar');
 // Inicializa DB e sobe servidor
 initDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Servidor rodando em http://localhost:${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+  });
 }).catch(err => {
-    console.error('Erro ao inicializar banco:', err);
+  console.error('Erro ao inicializar banco:', err);
 });
