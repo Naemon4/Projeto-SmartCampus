@@ -2,9 +2,8 @@ const Usuario = require('../models/Usuario');
 
 async function isAdmin(req, res, next) {
   try {
-    const userId = req.user.id;
 
-    const user = await Usuario.findByPk(userId);
+    const user = await Usuario.findByPk(req.user.id);
 
     if (!user) {
       return res.status(404).json({ error: "Usuário não encontrado" });

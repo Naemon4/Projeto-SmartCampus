@@ -82,13 +82,13 @@ class UsuarioController {
       const token = jwt.sign({ id: usuario.id }, SECRET, { expiresIn: "10h" });
 
       res.cookie("token", token, {
-        httpOnly: true,   // não acessível via JS
+        httpOnly: true,   
         secure: process.env.NODE_ENV === "production", // apenas em HTTPS
         sameSite: "strict"
       });
 
 
-      res.json({ success: true, message: "Login bem-sucedido", user: usuario.id });
+      res.json({ success: true, message: "Login bem-sucedido", token: token});
 
     } catch (error) {
       console.error("Erro ao logar", error);

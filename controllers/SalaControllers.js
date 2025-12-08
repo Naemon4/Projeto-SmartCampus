@@ -51,7 +51,7 @@ class SalaController {
         }
 
     }
-    
+
     static async registrarSala(req, res) {
 
         try {
@@ -81,11 +81,11 @@ class SalaController {
                 throw new Error('Andar não existe no prédio')
             }
 
-            const sala = await Sala.findOne({ 
-                where: { 
+            const sala = await Sala.findOne({
+                where: {
                     nome: nomeSala,
                     andarId: andar.id
-                } 
+                }
             })
 
             if (sala) {
@@ -119,7 +119,12 @@ class SalaController {
 
             // 3. Iterar salas e gerar QRCode
             for (const sala of salas) {
-                const qrDataUrl = await QRCode.toDataURL(String(sala.id));
+                // URL que será codificada no QRCode
+                // Aqui você aponta para a rota que chama agendarHorarioAtual
+                const qrUrl = `localhost:3000/agendarNaHora?salaId=${sala.id}`;
+
+                // Gera QRCode com a URL
+                const qrDataUrl = await QRCode.toDataURL(qrUrl);
                 const qrImage = qrDataUrl.replace(/^data:image\/png;base64,/, "");
                 const imgBuffer = Buffer.from(qrImage, 'base64');
 
