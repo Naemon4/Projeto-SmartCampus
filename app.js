@@ -6,6 +6,8 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { initDB } = require('./config/db'); // só importa initDB
+const cron = require("node-cron");
+const agendamentoService = require('./services/agendamentoService');
 
 const PORT = process.env.PORT;
 
@@ -110,8 +112,14 @@ require('./models/Sala');
 require('./models/Usuario');
 require('./models/Predio');
 require('./models/Andar');
+
 // Inicializa DB e sobe servidor
 initDB().then(() => {
+
+  cron.schedule("* * * * *", () => {
+    agendamentoService.verificarAgendamentos();
+  });
+
   app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
   });

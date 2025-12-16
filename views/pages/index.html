@@ -1,65 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Smart Campus SENAI 2025</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <!-- Chart.js para Gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <style>
         /* Estilo para usar a fonte Montserrat com Tailwind */
         body {
             font-family: 'Montserrat', sans-serif;
         }
+
         /* Efeito suave de transição para o slider */
         .slider-track {
             transition: transform 0.5s ease-in-out;
         }
+
         /* Estilos principais do logo */
         .logo {
             font-family: 'Poppins', sans-serif;
             /* Tamanho da fonte adaptado para o formulário */
-            font-size: clamp(2.2rem, 8vw, 3rem); 
-            font-weight: 700; /* Peso da fonte */
-            letter-spacing: -1.5px; /* Espaçamento entre as letras */
-            margin-bottom: 1rem; /* Espaço abaixo do logo */
+            font-size: clamp(2.2rem, 8vw, 3rem);
+            font-weight: 700;
+            /* Peso da fonte */
+            letter-spacing: -1.5px;
+            /* Espaçamento entre as letras */
+            margin-bottom: 1rem;
+            /* Espaço abaixo do logo */
         }
 
         /* Cores para cada parte do texto do logo */
         .sala {
-            color: #3a5269; /* Azul escuro/acinzentado */
+            color: #3a5269;
+            /* Azul escuro/acinzentado */
         }
+
         .fa {
-            color: #376fa3; /* Azul marinho */
+            color: #376fa3;
+            /* Azul marinho */
         }
+
         .cil {
-            color: #4773c5; /* Azul cobalto */
+            color: #4773c5;
+            /* Azul cobalto */
         }
 
 
         /* Footer */
 
-        footer{
+        footer {
             background-color: #3a5269;
             color: oldlace;
             padding: 50px 0;
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        .footer-container{
+        .footer-container {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -68,42 +80,43 @@
             padding: 0 20px;
         }
 
-        .footer-section{
+        .footer-section {
             flex-basis: 20%;
             margin-bottom: 20px;
         }
 
-        .footer-section h4{
+        .footer-section h4 {
             margin-bottom: 15px;
             font-size: 18px;
             color: #376fa3;
         }
 
-        .footer-section p, .footer-section ul{
+        .footer-section p,
+        .footer-section ul {
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        .footer-section ul{
+        .footer-section ul {
             list-style-type: none;
         }
 
-        .footer-section ul li{
+        .footer-section ul li {
             margin-bottom: 10px;
         }
 
-        .footer-section il li a{
+        .footer-section il li a {
             color: aliceblue;
             text-decoration: none;
             transition: color 0.3s;
         }
 
-        .footer-section ul li a:hover{
+        .footer-section ul li a:hover {
             color: #ff6347;
         }
 
-        .social-links a{
+        .social-links a {
             display: inline-block;
             margin-right: 10px;
             color: aliceblue;
@@ -111,11 +124,11 @@
             transition: color 0.3s;
         }
 
-        .social-links a:hover{
+        .social-links a:hover {
             color: green;
         }
 
-        .footer-bottom{
+        .footer-bottom {
             text-align: center;
             margin-top: 20px;
             padding: 10px 0;
@@ -123,53 +136,59 @@
             font-size: 14px;
         }
 
-        .footer-bottom p{
+        .footer-bottom p {
             margin: 0;
         }
-
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Cabeçalho e Navegação -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-  <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-    <!-- Logo -->
-    <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
-      <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span class="text-[#4773c5]">cil</span>
-    </div>
+        <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
+                <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span
+                    class="text-[#4773c5]">cil</span>
+            </div>
 
-    <!-- Menu Desktop -->
-    <div class="hidden md:flex items-center space-x-6">
-      <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition">Sobre</a>
-      <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
-      <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
-      <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
-      <a href="/registro" class="text-gray-600 hover:text-blue-600 transition">Cadastro</a>
-      <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
-    </div>
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/" class="text-gray-600 hover:text-blue-600 transition">Inicio</a>
+                <a href="/agendar" id="agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+                <a href="/dashboard" id="dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+                <a href="/cadastrarEspaco" id="cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition" id="linkCadastro">Cadastro</a>
+                <a href="/login"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkLogin">Login</a>
+                <a href="/perfil" class="hidden bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkPerfil">Perfil</a>
+            </div>
 
-    <!-- Botão Mobile -->
-    <div class="md:hidden">
-      <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-      </button>
-    </div>
-  </nav>
+            <!-- Botão Mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
 
-  <!-- Menu Mobile -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white">
-    <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
-    <a href="/agendar" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
-    <a href="/dashboard" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
-    <a href="/cadastrarEspaco" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar espaço</a>
-    <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
-    <a href="/login" class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Login</a>
-  </div>
-</header>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="/" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Início</a>
+            <a href="/agendar" id="agendarMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+            <a href="/dashboard" id="dashboardMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+            <a href="/cadastrarEspaco" id="cadastrarEspacoMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar
+                espaço</a>
+            <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100" id="linkCadastroMoba">Cadastro</a>
+            <a href="/login"
+                class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkLoginMoba">Login</a>
+            <a href="/perfil" class="hidden block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkPerfilMoba">Perfil</a>
+        </div>
+    </header>
 
     <!-- Conteúdo Principal -->
     <main>
@@ -178,113 +197,113 @@
             <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
                 Inovando o Futuro com o <!-- Estrutura do Logo -->
                 <div class="logo">
-                    <span class="smart">Smart</span><span class="ca">Ca</span><span class="mp">mp</span><span class="us">us</span>
+                    <span class="smart">Smart</span><span class="ca">Ca</span><span class="mp">mp</span><span
+                        class="us">us</span>
                 </div>
 
 
             </h1>
             <p class="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                Um projeto desenvolvido por alunos do SENAI para transformar nosso campus em um ambiente mais inteligente, conectado e sustentável, aplicando na prática os conhecimentos para resolver desafios reais.
+                Um projeto desenvolvido por alunos do SENAI para transformar nosso campus em um ambiente mais
+                inteligente, conectado e sustentável, aplicando na prática os conhecimentos para resolver desafios
+                reais.
             </p>
             <div class="mt-8 flex justify-center space-x-4">
-                <a href="sobre.html" class="bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition duration-300">Saiba Mais</a>
-                <a href="/dashboard" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-300 transition duration-300">Ver Dashboard</a>
+                <a href="/dashboard"
+                    class="bg-gray-200 text-gray-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-300 transition duration-300">Ver
+                    Dashboard</a>
             </div>
         </section>
-            </div>
+        </div>
         </section>
-</div>
+        </div>
 
-    <!-- Seção do Slider de Imagens de IoT -->
-        <section class="container mx-auto px-6 pb-16 md:pb-24">
-            <div id="slider" class="relative w-full max-w-5xl mx-auto overflow-hidden rounded-xl shadow-2xl" style="height: 500px;">
-                <!-- Track que segura os slides -->
-                <div id="slider-track" class="slider-track flex h-full">
-                    <!-- Slide 1 -->
-                    <div class="w-full flex-shrink-0 h-full">
-                        <img src="/Proj_MdS_-main/views/img/bannerCanva.png" alt="marketing do site" class="w-full h-full object-cover">
-                    </div>
-        </section>
+        <!-- Seção da Equipe -->
+        <h3 class="text-2xl font-bold text-center text-gray-800 mb-10">Nossa Equipe</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
 
-<!-- Seção da Equipe -->
-            <h3 class="text-2xl font-bold text-center text-gray-800 mb-10">Nossa Equipe</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-
-                <!-- Card do Aluno 1 -->
-                <div class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <div class="mx-auto w-32 h-32 mb-4">
-                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="/Proj_MdS_-main/views/img/athos.png" alt="Foto do Aluno 1">
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900">Athos Jasper</h4>
-                    <p class="text-blue-600 font-semibold">Gerente de Projeto</p>
+            <!-- Card do Aluno 1 -->
+            <div
+                class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                <div class="mx-auto w-32 h-32 mb-4">
+                    <img class="w-full h-full rounded-full object-cover shadow-lg"
+                        src="../img/athos.jpeg" alt="Foto do Aluno 1">
                 </div>
-
-                <!-- Card do Aluno 2 -->
-                <div class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <div class="mx-auto w-32 h-32 mb-4">
-                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="" alt="Foto do Aluno 2">
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900">Lívia Colinsque</h4>
-                    <p class="text-red-600 font-semibold">Desenvolvedor Back-end</p>
-                </div>
-
-                <!-- Card do Aluno 3 -->
-                <div class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <div class="mx-auto w-32 h-32 mb-4">
-                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="/Proj_MdS_-main/views/img/lorena.png" alt="Foto do Aluno 3">
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900">Lorena Rocha</h4>
-                    <p class="text-yellow-600 font-semibold">Desenvolvedor Front-end</p>
-                </div>
-
-                <!-- Card do Aluno 4 -->
-                <div class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                    <div class="mx-auto w-32 h-32 mb-4">
-                        <img class="w-full h-full rounded-full object-cover shadow-lg" src="" alt="Foto do Aluno 4">
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900">Beatriz França</h4>
-                    <p class="text-green-600 font-semibold">Analista de IoT & Dados</p>
-                </div>
+                <h4 class="text-xl font-bold text-gray-900">Athos Jasper</h4>
+                <p class="text-blue-600 font-semibold">Gerente de Projeto e Desenvolvedor Back-end</p>
             </div>
 
-        </main>
+            <!-- Card do Aluno 2 -->
+            <div
+                class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                <div class="mx-auto w-32 h-32 mb-4">
+                    <img class="w-full h-full rounded-full object-cover shadow-lg" src="../img/livia.jpeg" alt="Foto do Aluno 2">
+                </div>
+                <h4 class="text-xl font-bold text-gray-900">Lívia Colinsque</h4>
+                <p class="text-red-600 font-semibold">Desenvolvedora Front-end</p>
+            </div>
 
-            
+            <!-- Card do Aluno 3 -->
+            <div
+                class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                <div class="mx-auto w-32 h-32 mb-4">
+                    <img class="w-full h-full rounded-full object-cover shadow-lg"
+                        src="../img/lorena.jpeg" alt="Foto do Aluno 3">
+                </div>
+                <h4 class="text-xl font-bold text-gray-900">Lorena Rocha</h4>
+                <p class="text-yellow-600 font-semibold">Desenvolvedora Front-end</p>
+            </div>
+
+            <!-- Card do Aluno 4 -->
+            <div
+                class="text-center bg-gray-100 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                <div class="mx-auto w-32 h-32 mb-4">
+                    <img class="w-full h-full rounded-full object-cover shadow-lg" src="../img/bea.jpeg" alt="Foto do Aluno 4">
+                </div>
+                <h4 class="text-xl font-bold text-gray-900">Beatriz França</h4>
+                <p class="text-green-600 font-semibold">Desenvolvedora Back-end</p>
+            </div>
+        </div>
+
+    </main>
+
+
     <!-- Footer -->
 
-            <footer>
-                <div class="footer-container">
-                    <div class="footer-section">
-                        <h4>Sobre Nós</h4>
-                        <p>Somos estudantes do curso técnico 
-                           Desenvolvimento de Sistemas do Senai Zerbine
-                           criando um TCC que fornece soluções para a 
-                           desorganização o meio escolar e de trabalho.
-                        </p>
-                    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Sobre Nós</h4>
+                <p>Somos estudantes do curso técnico
+                    Desenvolvimento de Sistemas do Senai Zerbine
+                    criando um TCC que fornece soluções para a
+                    desorganização o meio escolar e de trabalho.
+                </p>
+            </div>
 
-                    <div class="footer-section">
-                        <h4>Contato</h4>
-                        <p>Email: alunotcc@gmail.com</p>
-                        <p>Telefone: (19) 1234-5678</p>
-                        <p>Endereço: Rua Exemplo, 123, São Paulo, SP</p>
-                    </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: alunotcc@gmail.com</p>
+                <p>Telefone: (19) 1234-5678</p>
+                <p>Endereço: Rua Exemplo, 123, São Paulo, SP</p>
+            </div>
 
-                    <div class="footer-section">
-                        <h4>Siga-nos</h4>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/">Instagram</a>
-                            <a href="https://www.facebook.com/?locale=pt_BR">FaceBook</a>
-                        </div>
-                    </div>
+            <div class="footer-section">
+                <h4>Siga-nos</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/">Instagram</a>
+                    <a href="https://www.facebook.com/?locale=pt_BR">FaceBook</a>
                 </div>
+            </div>
+        </div>
 
-                <div class="footer-bottom">
-                    <p>&copy; 2025 SalaFácil. Todos os direitos reservados.</p>
-                </div>
-            </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SalaFácil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js">
-</script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js">
+    </script>
 </body>
+<script src="../js/authHeader.js"></script>
 </html>
