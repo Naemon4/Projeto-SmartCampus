@@ -1,4 +1,3 @@
-const Usuario = require('../models/Usuario');
 const Sala = require('../models/Sala');
 const Predio = require('../models/Predio');
 const Andar = require('../models/Andar');

@@ -28,7 +28,52 @@
         body { font-family: 'Montserrat', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+<body class="bg-gray-50 ">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="font-[Poppins] text-[clamp(2.2rem,8vw,3rem)] font-bold tracking-tight mb-4">
+                <span class="text-[#3a5269]">Sala</span><span class="text-[#376fa3]">Fá</span><span
+                    class="text-[#4773c5]">cil</span>
+            </div>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/" class="text-gray-600 hover:text-blue-600 transition">Inicio</a>
+                <a href="/agendar" id="agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+                <a href="/dashboard" id="dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+                <a href="/cadastrarEspaco" id="cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition" id="linkCadastro">Cadastro</a>
+                <a href="/login"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkLogin">Login</a>
+                <a href="/perfil" class="hidden bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkPerfil">Perfil</a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="/" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Início</a>
+            <a href="/agendar" id="agendarMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+            <a href="/dashboard" id="dashboardMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+            <a href="/cadastrarEspaco" id="cadastrarEspacoMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar
+                espaço</a>
+            <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100" id="linkCadastroMoba">Cadastro</a>
+            <a href="/login"
+                class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkLoginMoba">Login</a>
+            <a href="/perfil" class="hidden block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkPerfilMoba">Perfil</a>
+        </div>
+    </header>
 
     <div class="container mx-auto px-6 py-12">
         <div class="max-w-lg mx-auto bg-white p-8 md:p-12 rounded-xl shadow-2xl">
@@ -88,4 +133,5 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
 <script src="../js/registerScript.js"></script>
+<script src="../js/authHeader.js"></script>
 </html>

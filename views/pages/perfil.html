@@ -27,13 +27,14 @@
 
             <!-- Menu Desktop -->
             <div class="hidden md:flex items-center space-x-6">
-                <a href="sobre.html" class="text-gray-600 hover:text-blue-600 transition">Sobre</a>
-                <a href="/agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
-                <a href="/dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
-                <a href="/cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
-                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition">Cadastro</a>
+                <a href="/" class="text-gray-600 hover:text-blue-600 transition">Inicio</a>
+                <a href="/agendar" id="agendar" class="text-gray-600 hover:text-blue-600 transition">Agendar</a>
+                <a href="/dashboard" id="dashboard" class="text-gray-600 hover:text-blue-600 transition">Dashboard</a>
+                <a href="/cadastrarEspaco" id="cadastrarEspaco" class="text-gray-600 hover:text-blue-600 transition">Cadastrar espaço</a>
+                <a href="/registro" class="text-gray-600 hover:text-blue-600 transition" id="linkCadastro">Cadastro</a>
                 <a href="/login"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkLogin">Login</a>
+                <a href="/perfil" class="hidden bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" id="linkPerfil">Perfil</a>
             </div>
 
             <!-- Botão Mobile -->
@@ -49,14 +50,15 @@
 
         <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white">
-            <a href="sobre.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Sobre</a>
-            <a href="/agendar" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
-            <a href="/dashboard" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
-            <a href="/cadastrarEspaco" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar
+            <a href="/" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Início</a>
+            <a href="/agendar" id="agendarMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Agendar</a>
+            <a href="/dashboard" id="dashboardMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Dashboard</a>
+            <a href="/cadastrarEspaco" id="cadastrarEspacoMoba" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastrar
                 espaço</a>
-            <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Cadastro</a>
+            <a href="/registro" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100" id="linkCadastroMoba">Cadastro</a>
             <a href="/login"
-                class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">Login</a>
+                class="block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkLoginMoba">Login</a>
+            <a href="/perfil" class="hidden block py-2 px-6 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700" id="linkPerfilMoba">Perfil</a>
         </div>
     </header>
 
@@ -141,5 +143,6 @@
 <script src="../js/perfilScript.js"></script>
 <script src="../js/verAgendamentos.js"></script>
 <script src="../js/admImpressao.js"></script>
-
+<script src="../js/authHeader.js"></script>
+<script src="../js/logout.js"></script>
 </html>

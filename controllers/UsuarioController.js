@@ -54,7 +54,7 @@ class UsuarioController {
         });
       }
 
-      res.status(201).json({ success: true, message: "Usuário registrado com sucesso!"});
+      res.status(201).json({ success: true, message: "Usuário registrado com sucesso!" });
 
     } catch (error) {
       console.error("Erro ao registrar", error);
@@ -82,13 +82,13 @@ class UsuarioController {
       const token = jwt.sign({ id: usuario.id }, SECRET, { expiresIn: "10h" });
 
       res.cookie("token", token, {
-        httpOnly: true,   
+        httpOnly: true,
         secure: process.env.NODE_ENV === "production", // apenas em HTTPS
         sameSite: "strict"
       });
 
 
-      res.json({ success: true, message: "Login bem-sucedido", token: token});
+      res.json({ success: true, message: "Login bem-sucedido", token: token });
 
     } catch (error) {
       console.error("Erro ao logar", error);
